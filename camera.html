@@ -23,11 +23,31 @@
         <br><br><br>
         <div class="container">
             <div class="row">
+                <!-- camera stuff -->
                 <div class="col">
-                    <h1 class="text-white">Eat your favorite food for $1</h1>
+                    <div  id="reader"></div>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <div class="col">
+                    <div id="result"></div>
                 </div>
             </div>
         </div>
+
+        <script src="html5-qrcode.min.js"></script>
+        <script type="text/javascript">
+            function onScanSuccess(qrCodeMessage) {
+                document.getElementById('result').innerHTML = `<a class="result mx-auto d-block text-center" target="_blank" href="${qrCodeMessage}"> ${qrCodeMessage} </a>`;
+            }
+            function onScanError(errorMessage) {
+            //handle scan error
+            }
+            var html5QrcodeScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 });
+            html5QrcodeScanner.render(onScanSuccess, onScanError);
+        </script>
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
